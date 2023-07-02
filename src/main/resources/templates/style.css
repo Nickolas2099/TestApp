@@ -1,0 +1,8 @@
+.footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+.content {
+    border-radius: 20px;
+}
