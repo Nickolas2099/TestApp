@@ -11,4 +11,9 @@ public class Ribbon {
         return "ribbon";
     }
 
+    @GetMapping("/createPost")
+    public String creatingPage() {
+        return "createPost";
+    }
+
 }
