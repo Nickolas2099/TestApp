@@ -36,43 +36,20 @@
         </nav>
       </header>
 
+
+
       <div th:each="post : ${posts}" class="col-8 mt-3 mb-3 p-5 bg-light rounded">
           <h5>User</h5>
+          <h6 class="text-secondary" th:text="${post.postTime}"></h6>
           <hr>
           <p th:text = "${post.content}"></p>
           <hr>
-          <button class="btn btn-primary">Edit</button>
-          <button class="btn btn-primary">Delete</button>
+          <a href="@{/updatePost/{id}(id=${post.getId()})}">
+          <button class="btn btn-primary" type="submit">Edit</button>
+          </a>
       </div>
 
 
-      <div class="col-8 mt-3 mb-3 p-5 bg-light rounded">
-          <h5>Antonenko Nickolai</h5>
-          <hr>
-          <p>
-            Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> 
-            Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> 
-            Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> 
-          </p>
-          <hr>
-          <button class="btn btn-primary">Edit</button>
-          <button class="btn btn-primary">Delete</button>
-        </div>
-
-        <div class="col-8 mt-3 mb-3 p-5 bg-light rounded">
-          <h5>Antonenko Nickolai</h5>
-          <hr>
-          <p>
-            Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> 
-            Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> 
-            Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> 
-            Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> 
-            Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here -> Text will be here ->   
-          </p>
-          <hr>
-          <button class="btn btn-primary">Edit</button>
-          <button class="btn btn-primary">Delete</button>
-        </div>
 
       <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
         <div class="col-md-4 d-flex align-items-center">

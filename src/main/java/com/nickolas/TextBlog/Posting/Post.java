@@ -3,7 +3,7 @@ package com.nickolas.TextBlog.Posting;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -15,7 +15,7 @@ public class Post {
     @Column(name = "content")
     private String content;
     @Column(name = "post_time")
-    private Date postTime;
+    private Timestamp postTime;
     @JoinColumn(referencedColumnName = "user.id")
     private int userId;
 
