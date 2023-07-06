@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 
@@ -32,7 +30,7 @@ public class Ribbon {
     }
 
     @PostMapping("/createPost")
-    public String create(@ModelAttribute("post") Post post, BindingResult bindingResult) {
+    public String create(@ModelAttribute("post") @Validated Post post, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "createPost";
         }
@@ -43,9 +41,29 @@ public class Ribbon {
     }
 
     @GetMapping("/{id}/updatePost")
-    public String delete(Model model, @PathVariable("id") int id) {
+    public String update(Model model, @PathVariable("id") int id) {
         model.addAttribute("post", postService.getById(id));
         return "updatePost";
     }
+
+    @RequestMapping(value = "/{id}/updatePost", method = RequestMethod.PATCH, params ="update=Edit")
+    public String edit(@ModelAttribute("post") @Validated Post post, @PathVariable("id") int id,
+                       BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return "/{id}/updatePost";
+        }
+        Post origPost = postService.getById(id);
+        post.setUserId(origPost.getUserId());
+        post.setPostTime(origPost.getPostTime());
+        postService.update(id, post);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/{id}/updatePost", method = RequestMethod.DELETE, params="update=Remove")
+    public String delete(@PathVariable("id") int id) {
+        postService.delete(id);
+        return "redirect:/";
+    }
+
 
 }

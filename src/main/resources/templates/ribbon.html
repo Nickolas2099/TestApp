@@ -44,7 +44,7 @@
           <hr>
           <p th:text = "${post.content}"></p>
           <hr>
-          <a href="@{/updatePost/{id}(id=${post.getId()})}">
+          <a th:href="@{/{id}/updatePost(id=${post.getId()})}">
           <button class="btn btn-primary" type="submit">Edit</button>
           </a>
       </div>
