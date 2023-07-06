@@ -22,7 +22,7 @@ public class PostService implements ParentService<Post> {
     }
 
     public Post getById(int id) {
-        return null;
+        return postRepository.findById(id).orElse(null);
     }
 
     public void update(int id, Post post) {
