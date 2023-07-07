@@ -26,10 +26,10 @@ public class PostService implements ParentService<Post> {
     }
 
     public void update(int id, Post post) {
-
+        postRepository.updatePost(post.getContent(), id);
     }
 
     public void delete(int id) {
-
+        postRepository.deleteById(id);
     }
 }

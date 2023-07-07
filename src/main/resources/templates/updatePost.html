@@ -37,7 +37,7 @@
 
 
 
-    <form th:action="@{/{id}/updatePost(id=${post.getId()})}" method="patch">
+    <form th:action="@{/{id}/updatePost(id=${post.getId()})}" th:method="patch" th:object="${post}">
       <div class="col7 mt-3">
         <div class="mb-3" th:method="get" th:object="${post}">
           <textarea class="form-control" placeholder="Type something about your life :)" id="postText" rows="20"
@@ -45,11 +45,9 @@
         </div>
       </div>
       <div class="col5 d-flex justify-content-end">
-        <button name="update" type="submit" value="Remove" class="btn btn-primary width-10-px mx-2">Remove</button>
-        <button name="update" type="submit" value="Edit" class="btn btn-primary">Edit</button>
+        <button type="submit" class="btn btn-primary">Edit</button>
       </div>
     </form>
-
 
 
 

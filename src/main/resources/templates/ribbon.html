@@ -44,9 +44,14 @@
           <hr>
           <p th:text = "${post.content}"></p>
           <hr>
+          <div class="d-flex justify-content-end">
           <a th:href="@{/{id}/updatePost(id=${post.getId()})}">
           <button class="btn btn-primary" type="submit">Edit</button>
           </a>
+          <form th:method="delete" th:action="@{/{id}(id=${post.getId()})}">
+              <button class="btn btn-primary mx-2" type="submit">Remove</button>
+          </form>
+          </div>
       </div>
 
 
