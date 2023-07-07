@@ -2,6 +2,7 @@ package com.nickolas.TextBlog.Controllers;
 
 import com.nickolas.TextBlog.Posting.Post;
 import com.nickolas.TextBlog.Services.PostService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 
+@Slf4j
 @Controller
 public class Ribbon {
 
@@ -46,10 +48,11 @@ public class Ribbon {
         return "updatePost";
     }
 
-    @RequestMapping(value = "/{id}/updatePost", method = RequestMethod.PATCH, params ="update=Edit")
+    @PatchMapping("/{id}/updatePost")
     public String edit(@ModelAttribute("post") @Validated Post post, @PathVariable("id") int id,
                        BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
+            log.info("Something went wrong in the post update module");
             return "/{id}/updatePost";
         }
         Post origPost = postService.getById(id);
@@ -59,7 +62,7 @@ public class Ribbon {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/{id}/updatePost", method = RequestMethod.DELETE, params="update=Remove")
+    @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         postService.delete(id);
         return "redirect:/";
