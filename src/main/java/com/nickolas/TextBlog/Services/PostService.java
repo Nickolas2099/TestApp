@@ -3,6 +3,7 @@ package com.nickolas.TextBlog.Services;
 import com.nickolas.TextBlog.Posting.Post;
 import com.nickolas.TextBlog.Repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,15 +19,15 @@ public class PostService implements ParentService<Post> {
     }
 
     public List<Post> getAll() {
-        return postRepository.findAll();
+        return postRepository.getAll();
     }
 
     public Post getById(int id) {
-        return postRepository.findById(id).orElse(null);
+        return postRepository.findById(id).orElse(new Post());
     }
 
     public void update(int id, Post post) {
-        postRepository.updatePost(post.getContent(), id);
+        postRepository.save(post);
     }
 
     public void delete(int id) {
