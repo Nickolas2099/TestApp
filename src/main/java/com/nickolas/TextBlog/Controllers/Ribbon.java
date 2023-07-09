@@ -2,6 +2,7 @@ package com.nickolas.TextBlog.Controllers;
 
 import com.nickolas.TextBlog.Posting.Post;
 import com.nickolas.TextBlog.Services.PostService;
+import com.nickolas.TextBlog.Services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class Ribbon {
 
     @Autowired
     PostService postService;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("/")
     public String ribbonPage(Model model) {
