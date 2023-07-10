@@ -39,7 +39,7 @@
 
 
       <div th:each="post : ${posts}" class="col-8 mt-3 mb-3 p-5 bg-light rounded">
-          <h5 th:text="">User</h5>
+          <h5 th:text="${post.getUserById(post.getUserId())}">User</h5>
           <h6 class="text-secondary" th:text="${#dates.format(post.postTime, 'HH:mm dd.MM.yyyy')}"></h6>
           <hr>
           <p th:text = "${post.content}"></p>
