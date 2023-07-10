@@ -1,7 +1,9 @@
 package com.nickolas.TextBlog.Posting;
 
+import com.nickolas.TextBlog.Services.UserService;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Timestamp;
 
@@ -18,5 +20,13 @@ public class Post {
     private Timestamp postTime;
     @JoinColumn(referencedColumnName = "user.id")
     private int userId;
+
+    @Autowired
+    @Transient
+    static UserService userService;
+    @Transient
+    public static User getUserById(int id) {
+        return userService.getById(id);
+    }
 
 }

@@ -2,16 +2,22 @@ package com.nickolas.TextBlog.Services;
 
 import com.nickolas.TextBlog.Posting.User;
 import com.nickolas.TextBlog.Repositories.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class UserService implements ParentService<User> {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
 
     @Override
@@ -36,6 +42,8 @@ public class UserService implements ParentService<User> {
 
     @Override
     public User getById(int id) {
-        return userRepository.findById(id).orElse(new User());
+        User user = userRepository.findById(id).orElse(new User());
+        log.debug("get User by id: {}", user);
+        return user;
     }
 }
