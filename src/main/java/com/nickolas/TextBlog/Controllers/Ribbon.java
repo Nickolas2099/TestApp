@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -25,7 +26,12 @@ public class Ribbon {
 
     @GetMapping("/")
     public String ribbonPage(Model model) {
-        model.addAttribute("posts", postService.getAll());
+
+        List<Post> posts = postService.getAll();
+        for(Post post : posts) {
+            post.setNickname(userService.getById(post.getUserId()).getNickname());
+        }
+        model.addAttribute("posts", posts);
         return "ribbon";
     }
 
@@ -71,6 +77,5 @@ public class Ribbon {
         postService.delete(id);
         return "redirect:/";
     }
-
 
 }
