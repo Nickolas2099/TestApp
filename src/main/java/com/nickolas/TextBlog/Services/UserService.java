@@ -42,8 +42,6 @@ public class UserService implements ParentService<User> {
 
     @Override
     public User getById(int id) {
-        User user = userRepository.findById(id).orElse(new User());
-        log.debug("get User by id: {}", user);
-        return user;
+        return userRepository.findById(id).orElse(new User());
     }
 }
