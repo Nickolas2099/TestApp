@@ -23,6 +23,8 @@ public class Post {
     private String content;
     @Column(name = "post_time")
     private Timestamp postTime;
+    @Column(name = "is_edit")
+    private boolean isEdit;
     @JoinColumn(referencedColumnName = "user.id")
     private int userId;
 
