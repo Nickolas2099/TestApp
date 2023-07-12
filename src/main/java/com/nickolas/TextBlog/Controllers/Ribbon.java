@@ -48,6 +48,7 @@ public class Ribbon {
         }
         post.setUserId(1);
         post.setPostTime(new Timestamp(System.currentTimeMillis()));
+        post.setEdit(false);
         postService.create(post);
         return "redirect:/";
     }
@@ -68,6 +69,7 @@ public class Ribbon {
         Post origPost = postService.getById(id);
         post.setUserId(origPost.getUserId());
         post.setPostTime(origPost.getPostTime());
+        post.setEdit(true);
         postService.update(id, post);
         return "redirect:/";
     }
