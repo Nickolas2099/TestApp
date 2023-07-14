@@ -16,7 +16,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
-public class Ribbon {
+public class RibbonController {
 
     @Autowired
     PostService postService;
