@@ -11,7 +11,7 @@ import java.util.List;
 public class PostService implements ParentService<Post> {
 
     @Autowired
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
 
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;

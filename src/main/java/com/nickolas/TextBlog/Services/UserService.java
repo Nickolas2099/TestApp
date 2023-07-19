@@ -13,7 +13,7 @@ import java.util.List;
 public class UserService implements ParentService<User> {
 
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -24,7 +24,6 @@ public class UserService implements ParentService<User> {
     public void create(User user) {
         userRepository.save(user);
     }
-    //ПОЧИТАТЬ ПРО СЕССИИ, ДЛЯ ДОБАВЛЕНИЯ ИМЕНИ ПОЛЬЗОВАТЕЛЯ В ПОСТ
     @Override
     public List<User> getAll() {
         return userRepository.findAll();
